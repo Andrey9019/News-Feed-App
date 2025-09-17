@@ -1,5 +1,5 @@
 {
-  "name": "intern-program",
+  "name": "news-feed-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,9 @@
     "check": "biome check src"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/vite": "^4.1.13",
     "@tanstack/react-query": "^5.89.0",
     "class-variance-authority": "^0.7.1",
@@ -31,7 +34,7 @@
     "vite-plugin-inspect": "^11.3.3",
     "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "zod": "^4.1.8",
+    "zod": "^4.1.9",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
