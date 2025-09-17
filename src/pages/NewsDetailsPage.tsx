@@ -1,6 +1,6 @@
-import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import newsData from "@/data/news.json";
+import { Link, useParams } from "react-router-dom";
 
 const NewsDetailPage = () => {
   const { id } = useParams<{ id: string }>();

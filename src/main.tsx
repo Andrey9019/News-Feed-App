@@ -1,13 +1,13 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Header from "./components/Header";
-import NewsFeedPage from "./pages/NewsFeedPage";
-import NewsDetailsPage from "./pages/NewsDetailsPage";
-import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import NewsDetailsPage from "./pages/NewsDetailsPage";
+import NewsFeedPage from "./pages/NewsFeedPage";
+import RegisterPage from "./pages/RegisterPage";
 
 import "./index.css";
 
@@ -27,5 +27,5 @@ createRoot(rootElement).render(
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
-  </StrictMode>
+  </StrictMode>,
 );

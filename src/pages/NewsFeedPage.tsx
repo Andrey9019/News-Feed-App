@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import newsData from "@/data/news.json";
+import { Link } from "react-router-dom";
 
 interface NewsItem {
   id: number;
@@ -32,12 +32,8 @@ const NewsFeedPage = () => {
                   <CardTitle className="text-xl">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <p className="text-gray-600 line-clamp-2">
-                    {item.description}
-                  </p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    Date: {item.date}
-                  </p>
+                  <p className="text-gray-600 line-clamp-2">{item.description}</p>
+                  <p className="text-sm text-gray-500 mt-2">Date: {item.date}</p>
                 </CardContent>
               </div>
             </Card>

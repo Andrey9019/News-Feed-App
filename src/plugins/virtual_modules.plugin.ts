@@ -11,9 +11,7 @@ function virtualModules() {
     },
     load(id: string): string | null {
       if (id === "virtual:plugins") {
-        return modules
-          .map((m: any): string => `import './src/modules/${m}.ts';`)
-          .join("\n");
+        return modules.map((m: string): string => `import './src/modules/${m}.ts';`).join("\n");
       }
       return null;
     },
