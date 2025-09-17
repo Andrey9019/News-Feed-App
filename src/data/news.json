@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Lorem ipsum dolor sit amet.",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, at?",
+    "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque cum laboriosam nobis earum provident ducimus in hic, incidunt accusantium? Labore deleniti praesentium voluptate dicta, rem soluta ullam amet a sunt.",
+    "date": "2025-09-17",
+    "author": "Andrii",
+    "image": "/public/s.jpg"
+  },
+  {
+    "id": 1,
+    "title": "Lorem ipsum dolor sit amet.",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, at?",
+    "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque cum laboriosam nobis earum provident ducimus in hic, incidunt accusantium? Labore deleniti praesentium voluptate dicta, rem soluta ullam amet a sunt.",
+    "date": "2025-09-17",
+    "author": "Svitlana",
+    "image": "/public/s.jpg"
+  },
+  {
+    "id": 1,
+    "title": "Lorem ipsum dolor sit amet.",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, at?",
+    "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque cum laboriosam nobis earum provident ducimus in hic, incidunt accusantium? Labore deleniti praesentium voluptate dicta, rem soluta ullam amet a sunt.",
+    "date": "2025-09-17",
+    "author": "Artem",
+    "image": "/public/s.jpg"
+  }
+]

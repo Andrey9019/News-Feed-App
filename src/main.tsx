@@ -3,10 +3,12 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import App from "./App";
+import Header from "./components/Header";
+import NewsFeedPage from "./pages/NewsFeedPage";
+import NewsDetailsPage from "./pages/NewsDetailsPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import Header from "./components/Header";
+
 import "./index.css";
 
 const queryClient = new QueryClient();
@@ -18,9 +20,10 @@ createRoot(rootElement).render(
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<NewsFeedPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/news/:id" element={<NewsDetailsPage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
