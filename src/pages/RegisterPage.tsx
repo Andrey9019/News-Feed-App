@@ -28,7 +28,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <div className="flex  items-center justify-center bg-gray-100">
       <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-md">
         <h2 className="text-center text-2xl font-bold">Register</h2>
         <Form {...form}>
@@ -53,7 +53,11 @@ const RegisterPage = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="Enter your password" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="Enter your password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -66,7 +70,11 @@ const RegisterPage = () => {
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="Confirm your password" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="Confirm your password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -79,7 +87,11 @@ const RegisterPage = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input type="string" placeholder="Enter your Name" {...field} />
+                    <Input
+                      type="string"
+                      placeholder="Enter your Name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
