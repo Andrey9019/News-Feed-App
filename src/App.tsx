@@ -1,11 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { lazy } from "react";
+import Layout from "./components/layout/Layout";
 
-import Layout from "./components/Layout";
-import NewsFeedPage from "./pages/NewsFeedPage";
-import NewsDetailsPage from "./pages/NewsDetailsPage";
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
+const NewsFeedPage = lazy(() => import("./pages/NewsFeedPage"));
+const NewsDetailsPage = lazy(() => import("./pages/NewsDetailsPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
 
 const queryClient = new QueryClient();
 
