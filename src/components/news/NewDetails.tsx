@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import type { NewsItem } from "@/types";
+import { Link } from "react-router-dom";
 
 interface NewsDetailCardProps {
   newsItem: NewsItem;

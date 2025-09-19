@@ -1,5 +1,3 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,12 +9,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
-  loginSchema,
-  registerSchema,
   type LoginFormData,
   type RegisterFormData,
+  loginSchema,
+  registerSchema,
 } from "@/lib/authSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+import { useForm } from "react-hook-form";
 interface AuthFormProps {
   formType: "register" | "login";
 }
@@ -38,9 +38,7 @@ export default function AuthForm({ formType }: AuthFormProps) {
 
   return (
     <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-md">
-      <h2 className="text-center text-2xl font-bold">
-        {isRegister ? "Register" : "Login"}
-      </h2>
+      <h2 className="text-center text-2xl font-bold">{isRegister ? "Register" : "Login"}</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -63,11 +61,7 @@ export default function AuthForm({ formType }: AuthFormProps) {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Enter your password"
-                    {...field}
-                  />
+                  <Input type="password" placeholder="Enter your password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -82,11 +76,7 @@ export default function AuthForm({ formType }: AuthFormProps) {
                   <FormItem>
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="Confirm your password"
-                        {...field}
-                      />
+                      <Input type="password" placeholder="Confirm your password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

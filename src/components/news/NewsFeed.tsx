@@ -1,7 +1,7 @@
-import NewsFeedCard from "./NewsFeedCard";
 import newsData from "@/data/news.json";
-import { Link } from "react-router-dom";
 import type { NewsItem } from "@/types";
+import { Link } from "react-router-dom";
+import NewsFeedCard from "./NewsFeedCard";
 
 export default function NewsFeed() {
   const news: NewsItem[] = newsData;
