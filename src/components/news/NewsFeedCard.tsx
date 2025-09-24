@@ -27,7 +27,7 @@ export default function NewsFeedCard({
       ) : (
         <img
           src={defaultImg}
-          alt="Default image"
+          alt={title}
           loading="lazy"
           className="w-32 h-32 object-cover rounded-md mr-4 flex-shrink-0"
         />
