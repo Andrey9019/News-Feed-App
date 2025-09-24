@@ -8,27 +8,17 @@ export default function Article() {
 
   const { data: article, isLoading, error } = useArticleQuery(url);
 
-  if (isLoading)
-    return (
-      <div className="container mx-auto px-4 py-8">Loading article...</div>
-    );
+  if (isLoading) return <div className="container mx-auto px-4 py-8">Loading article...</div>;
   if (error)
-    return (
-      <div className="container mx-auto px-4 py-8 text-red-500">
-        Error: {error?.message}
-      </div>
-    );
-  if (!article)
-    return <div className="container mx-auto px-4 py-8">Article not found</div>;
+    return <div className="container mx-auto px-4 py-8 text-red-500">Error: {error?.message}</div>;
+  if (!article) return <div className="container mx-auto px-4 py-8">Article not found</div>;
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-3xl mx-auto">
         <div>
           <h2 className="text-2xl font-bold">{article.title}</h2>
-          <p className="text-sm text-gray-500">
-            {/* Author: {author} | Date: {date} */}
-          </p>
+          <p className="text-sm text-gray-500">{/* Author: {author} | Date: {date} */}</p>
         </div>
         <div>
           <img

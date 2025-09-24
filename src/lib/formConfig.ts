@@ -36,8 +36,6 @@ export const registerFields: FormFieldConfig[] = [
   },
 ];
 
-export const getFormFields = (
-  formType: "register" | "login"
-): FormFieldConfig[] => {
+export const getFormFields = (formType: "register" | "login"): FormFieldConfig[] => {
   return formType === "register" ? registerFields : loginFields;
 };

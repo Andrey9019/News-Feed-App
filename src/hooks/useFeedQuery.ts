@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchFeed } from "@/services/api";
+import { fetchFeed } from "@/services";
 import type { Feed } from "@/types";
 import { useSearchParams } from "react-router-dom";
 

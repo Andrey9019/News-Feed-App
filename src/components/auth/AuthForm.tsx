@@ -15,12 +15,7 @@ export default function AuthForm({ formType }: AuthFormProps) {
       <h2 className="text-center text-2xl font-bold">
         {formType === "register" ? "Register" : "Login"}
       </h2>
-      <FormContent
-        form={form}
-        fields={fields}
-        formType={formType}
-        onSubmit={onSubmit}
-      />
+      <FormContent form={form} fields={fields} formType={formType} onSubmit={onSubmit} />
     </div>
   );
 }

@@ -39,9 +39,7 @@ export default function NewsFeedCard({
         </CardHeader>
         <CardContent className="p-0">
           <p className="text-gray-600 line-clamp-2">{contentSnippet}</p>
-          <p className="text-sm text-gray-500 mt-2 items-end">
-            Date: {pubDate}
-          </p>
+          <p className="text-sm text-gray-500 mt-2 items-end">Date: {pubDate}</p>
         </CardContent>
       </div>
     </Card>

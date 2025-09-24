@@ -18,12 +18,8 @@ interface FormContentProps {
   formType: "register" | "login";
   onSubmit: (data: RegisterFormData | LoginFormData) => void;
 }
-export function FormContent({
-  form,
-  fields,
-  formType,
-  onSubmit,
-}: FormContentProps) {
+
+export function FormContent({ form, fields, formType, onSubmit }: FormContentProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -35,13 +31,11 @@ export function FormContent({
             render={({ field: formField }) => (
               <FormItem>
                 <FormLabel>{field.label}</FormLabel>
+
                 <FormControl>
-                  <Input
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    {...formField}
-                  />
+                  <Input type={field.type} placeholder={field.placeholder} {...formField} />
                 </FormControl>
+
                 <FormMessage />
               </FormItem>
             )}
