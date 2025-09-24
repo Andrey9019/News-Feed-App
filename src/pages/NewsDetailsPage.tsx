@@ -11,12 +11,12 @@ export default function NewsDetailPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-4">News not found</h1>
-        <Link to="/news">
+        <Link to="/">
           <Button variant="outline">Return to feed</Button>
         </Link>
       </div>
     );
   }
 
-  return <NewDetails newsItem={newsItem} />;
+  // return <NewDetails newsItem={newsItem} />;
 }

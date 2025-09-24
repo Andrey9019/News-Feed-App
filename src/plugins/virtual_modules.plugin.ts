@@ -1,10 +1,9 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
-import type { Plugin } from "vite";
 
-function virtualModules(): Plugin {
-  const modules: string[] = import.meta.env.VITE_MODULES?.split(",");
+const modules: string[] = ["auth", "feedParser"];
 
+function virtualModules() {
   return {
     name: "virtual-modules",
     resolveId(id: string): "virtual:plugins" | null {
@@ -13,7 +12,7 @@ function virtualModules(): Plugin {
       }
       return null;
     },
-    load(id: string) {
+    load(id: string): string | null {
       if (id === "virtual:plugins") {
         const validModules = modules.filter((module) => {
           const modulePath = resolve(__dirname, `src/modules/${module}.ts`);

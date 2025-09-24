@@ -13,7 +13,7 @@ export default function NewDetails({ newsItem }: NewsDetailCardProps) {
         <div>
           <h2 className="text-2xl font-bold">{newsItem.title}</h2>
           <p className="text-sm text-gray-500">
-            Author: {newsItem.author} | Date: {newsItem.date}
+            {/* Author: {newsItem.author} | Date: {newsItem.date} */}
           </p>
         </div>
         <div>
