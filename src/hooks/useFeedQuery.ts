@@ -18,21 +18,4 @@ export function useFeedQuery(url?: string, force?: number) {
     isLoading,
     error,
   };
-  //   return useQuery<Feed, Error>({
-  //     queryKey: ["feed", { url, force }],
-  //     queryFn: async () => {
-  //       console.log(
-  //         `[useFeedQuery] Starting fetch with url=${url || "default"}, force=${
-  //           force || "none"
-  //         }`
-  //       );
-  //       const data = await fetchFeed(url, force);
-  //       console.log(`[useFeedQuery] Data fetched successfully:`, data);
-  //       return data;
-  //     },
-
-  //     onError: (error) => {
-  //       console.error(`[useFeedQuery] Error fetching feed:`, error.message);
-  //     },
-  //   });
 }

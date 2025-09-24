@@ -5,7 +5,7 @@ import { lazy } from "react";
 import "virtual:plugins";
 
 const NewsFeedPage = lazy(() => import("./pages/NewsFeedPage"));
-const NewsDetailsPage = lazy(() => import("./pages/NewsDetailsPage"));
+const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 
@@ -34,7 +34,7 @@ export default function App() {
             <Route path="/" element={<NewsFeedPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/news/:id" element={<NewsDetailsPage />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
           </Route>
         </Routes>
       </BrowserRouter>

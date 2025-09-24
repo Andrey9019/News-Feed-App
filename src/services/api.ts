@@ -20,26 +20,31 @@ export async function fetchFeed(url?: string, force?: number): Promise<Feed> {
 
   if (!response.ok) {
     const errorText = await response.text();
-    console.error(`[API] Error response: ${errorText}`); // Лог помилки
+    console.error(`[API] Error response: ${errorText}`);
     throw new Error(
       `HTTP error! status: ${response.status}, message: ${errorText}`
     );
   }
   const data: Feed = await response.json();
-  console.log("[API] Received data:", data); // Лог відповіді
+  console.log("[API] Received data:", data);
   return data;
 }
+//
+export async function parseArticle(url: string): Promise<Article> {
+  const params = new URLSearchParams();
+  params.append("url", url);
 
-// export async function parseArticle(url: string): Promise<Article> {
-//   const params = new URLSearchParams();
-//   params.append("url", url);
+  console.log(`[API] Sending request to: ${url}`);
 
-//   const response = await fetch(`${BASE_URL}/parse-article?${params}`);
-//   if (!response.ok) {
-//     throw new Error(`HTTP error! status: ${response.status}`);
-//   }
-//   return response.json();
-// }
+  const response = await fetch(`${BASE_URL}/parse-article?${params}`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const data: Article = await response.json();
+  console.log("[API] Received data:", data);
+  return data;
+}
 
 // export async function registerUser(
 //   email: string,
