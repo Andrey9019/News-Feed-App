@@ -20,6 +20,7 @@ export default function NewDetails({ newsItem }: NewsDetailCardProps) {
           <img
             src={newsItem.image}
             alt={newsItem.title}
+            loading="lazy"
             className="w-full h-64 object-cover rounded-md    mb-4"
           />
           <p className="text-gray-700 leading-relaxed">{newsItem.content}</p>

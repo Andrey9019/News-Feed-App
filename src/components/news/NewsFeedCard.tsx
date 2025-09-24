@@ -13,6 +13,7 @@ export default function NewsFeedCard({
       <img
         src={image}
         alt={title}
+        loading="lazy"
         className="w-24 h-24 object-cover rounded-md mr-4 flex-shrink-0"
       />
       <div className="flex-1 min-w-0">
