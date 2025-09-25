@@ -1,69 +1,198 @@
-document.addEventListener("DOMContentLoaded", () => {
-  function initPrebid() {
-    const adFrame = document.getElementById("ad-frame");
-    if (!adFrame) {
-      return false;
-    }
-
-    console.log("[Prebid] Found ad-frame, initializing");
-
-    const adUnit = {
-      code: "ad-frame",
-      mediaTypes: {
-        banner: {
-          sizes: [
-            [300, 200],
-            [300, 600],
-          ],
-        },
-      },
-      bids: [
-        {
-          bidder: "adtelligent",
-          params: { aid: 350975 },
-        },
-      ],
+function loadPrebidScript() {
+  return new Promise((resolve, reject) => {
+    console.log("[AdPrebid] Loading prebid10.10.0.js");
+    const script = document.createElement("script");
+    script.src = "/prebid10.10.0.js";
+    script.async = true;
+    script.onload = () => {
+      console.log("[AdPrebid] prebid10.10.0.js loaded");
+      resolve();
     };
+    script.onerror = () => {
+      console.error("[AdPrebid] Failed to load prebid10.10.0.js");
+      reject(new Error("Failed to load Prebid.js"));
+    };
+    document.head.appendChild(script);
+  });
+}
 
-    window.pbjs = window.pbjs || {};
-    pbjs.que = pbjs.que || [];
+function initPrebid() {
+  console.log("AdPrebid module loaded");
 
-    pbjs.que.push(() => {
-      pbjs.addAdUnits(adUnit);
-      pbjs.requestBids({
-        bidsBackHandler: (bidResponse) => {
-          const bids = pbjs.getHighestCpmBids("ad-frame");
-          if (bids.length > 0) {
-            const doc = adFrame.contentWindow.document;
-            pbjs.renderAd(doc, bids[0].adId);
-            console.log("[Prebid] Ad rendered");
-          } else {
-            console.log("[Prebid] No bids");
-          }
-        },
-      });
+  loadPrebidScript()
+    .then(() => {
+      function initAd() {
+        const adFrame1 = document.getElementById("ad-frame-0");
+        const adFrame2 = document.getElementById("ad-frame-1");
+        if (!adFrame1 || !adFrame2) {
+          return false;
+        }
+
+        const adUnits = [
+          {
+            code: "ad-frame-0",
+            mediaTypes: {
+              banner: {
+                sizes: [
+                  [300, 200],
+                  [300, 600],
+                ],
+              },
+            },
+            bids: [
+              {
+                bidder: "adtelligent",
+                params: { aid: 350975 },
+              },
+            ],
+          },
+          {
+            code: "ad-frame-1",
+            mediaTypes: {
+              banner: {
+                sizes: [
+                  [300, 200],
+                  [300, 600],
+                ],
+              },
+            },
+            bids: [
+              {
+                bidder: "adtelligent",
+                params: { aid: 350975 },
+              },
+            ],
+          },
+        ];
+
+        window.pbjs = window.pbjs || {};
+        window.pbjs.que.push(() => {
+          window.pbjs.addAdUnits(adUnits);
+          window.pbjs.requestBids({
+            bidsBackHandler: (bidResponse) => {
+              const bids1 = window.pbjs.getHighestCpmBids("ad-frame-0");
+              if (bids1.length > 0) {
+                const doc1 = adFrame1.contentWindow.document;
+                window.pbjs.renderAd(doc1, bids1[0].adId);
+                console.log("[PrebidModule] Ad rendered in ad-frame-0");
+              } else {
+                console.log("[PrebidModule] No bids for ad-frame-0");
+              }
+
+              const bids2 = window.pbjs.getHighestCpmBids("ad-frame-1");
+              if (bids2.length > 0) {
+                const doc2 = adFrame2.contentWindow.document;
+                window.pbjs.renderAd(doc2, bids2[0].adId);
+                console.log("[PrebidModule] Ad rendered in ad-frame-1");
+              } else {
+                console.log("[PrebidModule] No bids for ad-frame-1");
+              }
+            },
+          });
+        });
+        return true;
+      }
+      const interval = setInterval(() => {
+        if (initAd()) {
+          clearInterval(interval);
+        }
+      }, 100);
+    })
+    .catch((error) => {
+      console.error("[AdPrebid] Error loading Prebid.js:", error);
     });
+}
+initPrebid();
 
-    pbjs.que.push(() => {
-      pbjs.addAdUnits(adUnit);
-      pbjs.onEvent("bidResponse", (winningBid) => {
-        const doc = adFrame.contentWindow.document;
-        pbjs.renderAd(doc, winningBid.adId);
-        console.log("[Prebid] Bid response rendered");
-      });
-      pbjs.onEvent("bidWon", (bid) => {
-        console.log("[Prebid] Bid won", bid);
-      });
-      pbjs.requestBids({ timeout: 1000 });
-    });
+//
 
-    return true;
-  }
+//
 
-  const interval = setInterval(() => {
-    if (initPrebid()) {
-      clearInterval(interval);
-      console.log("[Prebid] Initialization complete");
-    }
-  }, 100);
-});
+//
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   function initPrebid() {
+//     const adFrame1 = document.getElementById("ad-frame-0")
+//     const adFrame2 = document.getElementById("ad-frame-1")
+//     if (!adFrame1) {
+//       return false;
+//     }
+//     if (!adFrame2) {
+//       return false
+//     }
+
+//   const adUnit = [
+//       {
+//         code: "ad-frame-0",
+//         mediaTypes: {
+//           banner: {
+//             sizes: [
+//               [300, 200],
+//               [300, 600],
+//             ],
+//           },
+//         },
+//         bids: [
+//           {
+//             bidder: "adtelligent",
+//             params: { aid: 350975 },
+//           },
+//         ],
+//       },
+//       {
+//         code: "ad-frame-1",
+//         mediaTypes: {
+//           banner: {
+//             sizes: [
+//               [300, 200],
+//               [300, 600],
+//             ],
+//           },
+//         },
+//         bids: [
+//           {
+//             bidder: "adtelligent",
+//             params: { aid: 350975 },
+//           },
+//         ],
+//       },
+//     ];
+//     // pbjs.que = pbjs.que || [];
+
+//     // window.pbjs = window.pbjs || {};
+
+//     // pbjs.que.push(() => {
+//     //   pbjs.addAdUnits(adUnit);
+//     //   pbjs.requestBids({
+//     //     bidsBackHandler: (bidResponse) => {
+//     //       const bids = pbjs.getHighestCpmBids("ad-frame-0")
+//     //       if (bids.length > 0) {
+//     //         const doc = adFrame.contentWindow.document;
+//     //         pbjs.renderAd(doc, bids[0].adId)
+//     //       } else {
+//     //       }
+//     //     }
+//     //   })
+//     // })
+
+//     pbjs.que.push(() => {
+//       pbjs.addAdUnits(adUnit);
+//       pbjs.onEvent("bidResponse", (winningBid) => {
+//         const doc1 = adFrame1.contentWindow.document;
+//         const doc2 = adFrame2.contentWindow.document;
+//         pbjs.renderAd(doc1, winningBid.adId);
+//         pbjs.renderAd(doc2, winningBid.adId);
+//       });
+//       pbjs.onEvent("bidWon", (bid) => {});
+//       pbjs.requestBids({ timeout: 1000 });
+//     });
+
+//     return true;
+//   }
+
+//   const interval = setInterval(() => {
+//     if (initPrebid()) {
+//       clearInterval(interval);
+//     }
+//   }, 100);
+// });

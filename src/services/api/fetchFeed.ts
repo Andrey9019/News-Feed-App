@@ -1,6 +1,6 @@
 import type { Feed } from "@/types";
 
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export async function fetchFeed(url?: string, force?: number): Promise<Feed> {
   const params = new URLSearchParams();
@@ -21,7 +21,9 @@ export async function fetchFeed(url?: string, force?: number): Promise<Feed> {
   if (!response.ok) {
     const errorText = await response.text();
     console.error(`[API] Error response: ${errorText}`);
-    throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+    throw new Error(
+      `HTTP error! status: ${response.status}, message: ${errorText}`
+    );
   }
   const data: Feed = await response.json();
   console.log("[API] Received data:", data);

@@ -36,7 +36,7 @@ export default function NewsFeed() {
   return (
     <div className="flex flex-row">
       {/* <div id="ad-frame"></div> */}
-      <iframe title=" " id="ad-frame" />
+      <iframe title=" " id="ad-frame-0" />
 
       <div className="container mx-auto  px-4 py-8">
         <h1 className="mb-8 text-center text-3xl font-bold">News feed</h1>

@@ -23,7 +23,7 @@ export default function Article() {
 
   return (
     <div className="flex flex-row">
-      <iframe title=" " id="ad-frame" />
+      <iframe title=" " id="ad-frame-0" />
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">

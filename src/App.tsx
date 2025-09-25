@@ -3,7 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Layout from "./components/layout/Layout";
 import { lazy } from "react";
+
 import "virtual:plugins";
+const modules = import.meta.env;
+console.log("VITE_MODULES11:", modules?.VITE_MODULES);
 
 const NewsFeedPage = lazy(() => import("./pages/NewsFeedPage"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
@@ -27,6 +30,10 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
+  debugger;
+  const modules = import.meta.env;
+  console.log("VITE_MODULES11:", modules?.VITE_MODULES);
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
