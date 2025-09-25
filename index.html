@@ -6,11 +6,129 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News Feed</title>
+
+  <script src="./public/prebid10.10.0.js"></script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
+  <script>
+    // Чекаємо, поки DOM завантажиться і елемент з ID з'явиться
+    document.addEventListener("DOMContentLoaded", function () {
+      function initPrebid() {
+        const adFrame = document.getElementById("ad-frame");
+        if (!adFrame) {
+          return false; // Елемент ще не з'явився
+        }
+
+        console.log("[Prebid] Found ad-frame, initializing");
+
+        const adUnit = {
+          code: 'ad-frame',
+          mediaTypes: { banner: { sizes: [[300, 200], [300, 600]] } },
+          bids: [
+            {
+              bidder: 'adtelligent',
+              params: { aid: 350975 }
+            }
+          ]
+        };
+
+        window.pbjs = window.pbjs || {};
+        pbjs.que = pbjs.que || [];
+
+        pbjs.que.push(function () {
+          pbjs.addAdUnits(adUnit);
+          pbjs.requestBids({
+            bidsBackHandler: (bidResponse) => {
+              const bids = pbjs.getHighestCpmBids('ad-frame');
+              if (bids.length > 0) {
+                const doc = adFrame.contentWindow.document;
+                pbjs.renderAd(doc, bids[0].adId);
+                console.log("[Prebid] Ad rendered");
+              } else {
+                console.log("[Prebid] No bids");
+              }
+            }
+          });
+        });
+
+        pbjs.que.push(() => {
+          pbjs.addAdUnits(adUnit);
+          pbjs.onEvent('bidResponse', (winningBid) => {
+            const doc = adFrame.contentWindow.document;
+            pbjs.renderAd(doc, winningBid.adId);
+            console.log("[Prebid] Bid response rendered");
+          });
+          pbjs.onEvent('bidWon', (bid) => {
+            console.log('[Prebid] Bid won', bid);
+          });
+          pbjs.requestBids({ timeout: 1000 });
+        });
+
+        return true; // Ініціалізовано
+      }
+
+      // Перевіряємо кожні 100 мс, поки елемент не з'явиться
+      const interval = setInterval(() => {
+        if (initPrebid()) {
+          clearInterval(interval);
+          console.log("[Prebid] Initialization complete");
+        }
+      }, 100);
+    });
+  </script>
+  <!-- <iframe id="ad-frame"></iframe> -->
+  <!-- <script> const adUnit = {
+      code: 'ad-frame',
+      mediaTypes: { banner: { sizes: [[300, 200], [300, 600]] } },
+      bids: [
+        {
+          bidder: 'adtelligent',
+          params: { aid: 350975 }
+        }
+      ]
+    }
+
+    window.pbjs = window.pbjs || {}
+    pbjs.que = pbjs.que || []
+
+    pbjs.que.push(function () {
+      pbjs.addAdUnits(adUnit)
+      pbjs.requestBids({
+        bidsBackHandler: (bidResposne) => {
+          const bids = pbjs.getHighestCpmBids('ad-frame')
+          if (bids.length > 0) {
+            const iframe = document.getElementById('ad-frame')
+            const doc = iframe.contentWindow.document
+            pbjs.renderAd(doc, bids[0].adId)
+
+          } else { console.log('no bids'); }
+          timeout = 1000
+        }
+      })
+    })
+
+
+    pbjs.que.push(() => {
+      pbjs.addAdUnits(adUnit)
+
+      pbjs.onEvent('bidResponse', (winningBid) => {
+
+        const iframe = document.getElementById('ad-frame')
+        const doc = iframe.contentWindow.document
+        pbjs.renderAd(doc, winningBid.adId)
+      })
+      pbjs.onEvent('bidWon', (bid) => {
+        console.log('bidWon', bid);
+      })
+      pbjs.requestBids({ timeout: 1000 })
+    })
+
+
+
+  </script> -->
 </body>
 
 </html>

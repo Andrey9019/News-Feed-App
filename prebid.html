@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="./public/prebid10.10.0.js"></script>
+</head>
+
+<body>
+    <h1>Ad</h1>
+    <iframe id="ad-frame"></iframe>
+    <script> const adUnit = {
+            code: 'ad-frame',
+            mediaTypes: { banner: { sizes: [[300, 200], [300, 600]] } },
+            bids: [
+                {
+                    bidder: 'adtelligent',
+                    params: { aid: 350975 }
+                }
+            ]
+        }
+
+        window.pbjs = window.pbjs || {}
+        pbjs.que = pbjs.que || []
+
+        // pbjs.que.push(function () {
+        //     pbjs.addAdUnits(adUnit)
+        //     pbjs.requestBids({
+        //         bidsBackHandler: (bidResposne) => {
+        //             const bids = pbjs.getHighestCpmBids('ad-frame')
+        //             if (bids.length > 0) {
+        //                 const iframe = document.getElementById('ad-frame')
+        //                 const doc = iframe.contentWindow.document
+        //                 pbjs.renderAd(doc, bids[0].adId)
+
+        //             } else { console.log('no bids'); }
+        //             timeout = 1000
+        //         }
+        //     })
+        // })
+
+
+        pbjs.que.push(() => {
+            pbjs.addAdUnits(adUnit)
+
+            pbjs.onEvent('bidResponse', (winningBid) => {
+
+                const iframe = document.getElementById('ad-frame')
+                const doc = iframe.contentWindow.document
+                pbjs.renderAd(doc, winningBid.adId)
+            })
+            pbjs.onEvent('bidWon', (bid) => {
+                console.log('bidWon', bid);
+            })
+            pbjs.requestBids({ timeout: 1000 })
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
