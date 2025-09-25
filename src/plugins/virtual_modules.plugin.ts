@@ -18,9 +18,7 @@ function virtualModules() {
           const modulePath = resolve(__dirname, `src/modules/${module}.ts`);
           const exists = existsSync(modulePath);
           if (!exists) {
-            console.warn(
-              `[virtual-modules] Module not found: src/modules/${module}.ts`
-            );
+            console.warn(`[virtual-modules] Module not found: src/modules/${module}.ts`);
           }
           return exists;
         });

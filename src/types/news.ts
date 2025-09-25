@@ -1,9 +1,22 @@
 export interface NewsItem {
-  id: number;
+  id?: string;
   title: string;
-  description: string;
-  content: string;
-  date: string;
-  author: string;
+  link: string;
   image: string;
+  pubDate: string;
+  contentSnippet: string;
+  content: string;
+  isoDate: string;
+  [key: string]: unknown;
+}
+
+export interface Feed {
+  items: NewsItem[];
+}
+
+export interface Article {
+  title: string;
+  image?: string;
+  content: string;
+  [key: string]: unknown;
 }
