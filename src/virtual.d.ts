@@ -1,4 +1,1 @@
-declare module "virtual:plugins" {
-  const value: any;
-  export default value;
-}
+/// <reference types="vite/client" />
