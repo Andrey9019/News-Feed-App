@@ -65,7 +65,11 @@ function initPrebid() {
           },
         ];
 
-        window.pbjs = window.pbjs || {};
+  window.pbjs = window.pbjs || { que: [] };
+      if (!Array.isArray(window.pbjs.que)) {
+        console.warn("[AdPrebid] window.pbjs.que is not an array, initializing as empty array");
+        window.pbjs.que = [];
+      }
         window.pbjs.que.push(() => {
           window.pbjs.addAdUnits(adUnits);
           window.pbjs.requestBids({
