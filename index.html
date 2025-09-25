@@ -14,12 +14,11 @@
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
   <script>
-    // Чекаємо, поки DOM завантажиться і елемент з ID з'явиться
     document.addEventListener("DOMContentLoaded", function () {
       function initPrebid() {
         const adFrame = document.getElementById("ad-frame");
         if (!adFrame) {
-          return false; // Елемент ще не з'явився
+          return false;
         }
 
         console.log("[Prebid] Found ad-frame, initializing");
@@ -67,10 +66,10 @@
           pbjs.requestBids({ timeout: 1000 });
         });
 
-        return true; // Ініціалізовано
+        return true;
       }
 
-      // Перевіряємо кожні 100 мс, поки елемент не з'явиться
+
       const interval = setInterval(() => {
         if (initPrebid()) {
           clearInterval(interval);
