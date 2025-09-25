@@ -13,8 +13,6 @@ import virtualModules from "./src/plugins/virtual_modules.plugin";
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), "");
 
-    const modules = ["auth", "feedParser"];
-
     return {
         plugins: [
             react(),
