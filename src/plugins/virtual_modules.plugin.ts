@@ -1,6 +1,6 @@
 function virtualModules(strModules: string) {
-    
-    const modules = strModules.split(',');
+
+    const modules = strModules.split(',') ;
 
     return{
         name: 'virtual:plugins',
