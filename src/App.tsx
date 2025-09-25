@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Layout from "./components/layout/Layout";
 import { lazy } from "react";
-import "virtual:plugins";
+
 
 const NewsFeedPage = lazy(() => import("./pages/NewsFeedPage"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));

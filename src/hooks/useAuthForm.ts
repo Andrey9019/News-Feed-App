@@ -37,9 +37,7 @@ export const useAuthForm = (formType: "register" | "login") => {
           // || !result.user
         ) {
           console.error("[useAuthForm] Invalid login response:", result);
-          throw new Error(
-            "Invalid response from server: no token or user data"
-          );
+          throw new Error("Invalid response from server: no token or user data");
         }
         login(result.token);
         console.log("[useAuthForm] Login success:", result);

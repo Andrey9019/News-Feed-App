@@ -5,7 +5,7 @@ interface AuthContextType {
   //   user: { email: string; name: string } | null;
   token: string | null;
   login: (
-    token: string
+    token: string,
     // user: { email: string; name: string }
   ) => void;
   logout: () => void;
@@ -14,23 +14,19 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
+  const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
   //   const [user, setUser] = useState<{ email: string; name: string } | null>(
   //     null
   //   );
   const isAuthenticated = !!token;
 
   const login = (
-    newToken: string
+    newToken: string,
     // newUser: { email: string; name: string }
   ) => {
     localStorage.setItem("token", newToken);
     setToken(newToken);
-    console.log(
-      `[AuthContext] Logged in with token: ${newToken.slice(0, 20)}...`
-    );
+    console.log(`[AuthContext] Logged in with token: ${newToken.slice(0, 20)}...`);
     // setUser(newUser);
     // console.log(`[AuthContext] Logged in: ${newUser.email}`);
   };

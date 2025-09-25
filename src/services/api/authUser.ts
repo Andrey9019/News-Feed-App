@@ -8,7 +8,7 @@ const getHeaders = () => ({
 });
 
 export async function registerUser(
-  data: RegisterFormData
+  data: RegisterFormData,
 ): Promise<{ id: string; email: string; name: string }> {
   console.log("[API] Registering user:", data);
   const response = await fetch(`${BASE_URL}/register`, {
