@@ -43,5 +43,5 @@ jobs:
 
       - name: Run build
         env:
-          VITE_MODULES: AdPrebid
+          VITE_MODULES: 
         run: npm run build
