@@ -1,4 +1,5 @@
 function virtualModules(strModules: string) {
+    
     const modules = strModules.split(',');
 
     return{
