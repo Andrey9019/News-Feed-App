@@ -23,7 +23,7 @@ export default function Article() {
 
   return (
     <div className="flex flex-row">
-      <iframe id="ad-frame"></iframe>
+      <iframe title=" " id="ad-frame" />
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
@@ -48,7 +48,7 @@ export default function Article() {
           </div>
         </div>
       </div>
-      <iframe id="ad-frame-1"></iframe>
+      <iframe title=" " id="ad-frame-1" />
     </div>
   );
 }

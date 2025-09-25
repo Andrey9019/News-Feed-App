@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   function initPrebid() {
     const adFrame = document.getElementById("ad-frame");
     if (!adFrame) {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.pbjs = window.pbjs || {};
     pbjs.que = pbjs.que || [];
 
-    pbjs.que.push(function () {
+    pbjs.que.push(() => {
       pbjs.addAdUnits(adUnit);
       pbjs.requestBids({
         bidsBackHandler: (bidResponse) => {
