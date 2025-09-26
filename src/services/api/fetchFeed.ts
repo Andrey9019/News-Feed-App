@@ -12,11 +12,11 @@ export async function fetchFeed(url?: string, force?: number): Promise<Feed> {
   const queryString = params.toString();
   const fullUrl = `${BASE_URL}/feed?${queryString ? `${queryString}` : ""}`;
 
-  console.log(`[API] Sending request to: ${fullUrl}`);
+  // console.log(`[API] Sending request to: ${fullUrl}`);
 
   const response = await fetch(fullUrl);
 
-  console.log(`[API] Response status: ${response.status}`);
+  // console.log(`[API] Response status: ${response.status}`);
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -26,6 +26,6 @@ export async function fetchFeed(url?: string, force?: number): Promise<Feed> {
     );
   }
   const data: Feed = await response.json();
-  console.log("[API] Received data:", data);
+  // console.log("[API] Received data:", data);
   return data;
 }

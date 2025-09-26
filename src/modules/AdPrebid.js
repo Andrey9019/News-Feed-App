@@ -44,6 +44,12 @@ function initPrebid() {
                 bidder: "adtelligent",
                 params: { aid: 350975 },
               },
+                {
+        bidder: 'bidmatic',
+        params: {
+          placement: '886409'
+        }
+      }
             ],
           },
           {
@@ -61,6 +67,12 @@ function initPrebid() {
                 bidder: "adtelligent",
                 params: { aid: 350975 },
               },
+                {
+        bidder: 'bidmatic',
+        params: {
+          placement: '886409'
+        }
+      }
             ],
           },
         ];
@@ -77,20 +89,14 @@ function initPrebid() {
               const bidsForFrameOne = window.pbjs.getHighestCpmBids("ad-frame-0");
               if (bidsForFrameOne.length > 0) {
                 const doc1 = adFrame1.contentWindow.document;
+                const doc2 = adFrame2.contentWindow.document;
                 window.pbjs.renderAd(doc1, bidsForFrameOne[0].adId);
+                window.pbjs.renderAd(doc2, bidsForFrameOne[0].adId);
                 console.log("[PrebidModule] Ad rendered in ad-frame-0");
               } else {
                 console.log("[PrebidModule] No bids for ad-frame-0");
               }
 
-              const bidsForFrameTwo = window.pbjs.getHighestCpmBids("ad-frame-1");
-              if (bidsForFrameTwo.length > 0) {
-                const doc2 = adFrame2.contentWindow.document;
-                window.pbjs.renderAd(doc2, bidsForFrameTwo[0].adId);
-                console.log("[PrebidModule] Ad rendered in ad-frame-1");
-              } else {
-                console.log("[PrebidModule] No bids for ad-frame-1");
-              }
             },
           });
         });

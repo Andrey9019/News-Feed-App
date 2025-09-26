@@ -2,6 +2,7 @@
   "version": "10.10.0",
   "modules": [
     "adtelligentBidAdapter",
+    "bidmaticBidAdapter",
     "consentManagementGpp",
     "consentManagementTcf",
     "gppControl_usnat",

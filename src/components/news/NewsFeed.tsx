@@ -24,7 +24,7 @@ export default function NewsFeed() {
   }
 
   if (!feed || !feed.items || feed.items.length === 0) {
-    console.log("[NewsFeed] No news items found");
+    // console.log("[NewsFeed] No news items found");
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         No news available
@@ -32,7 +32,7 @@ export default function NewsFeed() {
     );
   }
 
-  console.log(`[NewsFeed] Rendering ${feed.items.length} news items`);
+  // console.log(`[NewsFeed] Rendering ${feed.items.length} news items`);
   return (
     <div className="flex flex-row">
       {/* <div id="ad-frame"></div> */}
