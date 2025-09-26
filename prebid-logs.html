@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prebid Events Logger</title>
+    <script src="/prebid10.10.0.js"></script>
+</head>
+<body>
+    <h1>Ad</h1>
+    <iframe id="ad-frame"></iframe>
+    <h2>Event Logs</h2>
+    <div id="logOutput"></div>
+
+    <script>
+
+        function addLog(eventName, data, status = 'info') {
+            const logOutput = document.getElementById('logOutput');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry ${status}`;
+            logEntry.innerHTML = `<strong>${eventName}</strong> (${new Date().toISOString()}): <pre>${JSON.stringify(data, null, 2)}</pre>`;
+            logOutput.appendChild(logEntry);
+            logOutput.scrollTop = logOutput.scrollHeight;
+            console.log(`[Prebid] ${eventName}:`, data);
+        }
+
+
+        window.pbjs = window.pbjs || { que: [] };
+        window.pbjs.setConfig({ debug: true });
+
+
+        window.pbjs.onEvent('auctionInit', (data) => addLog('auctionInit', data));
+        window.pbjs.onEvent('bidRequested', (data) => addLog('bidRequested', data));
+        window.pbjs.onEvent('bidResponse', (data) => addLog('bidResponse', data, 'success'));
+        window.pbjs.onEvent('noBid', (data) => addLog('noBid', data, 'error'));
+        window.pbjs.onEvent('bidWon', (data) => addLog('bidWon', data, 'success'));
+        window.pbjs.onEvent('auctionEnd', (data) => addLog('auctionEnd', data));
+        window.pbjs.onEvent('adRenderSucceeded', (data) => addLog('adRenderSucceeded', data, 'success'));
+        window.pbjs.onEvent('adRenderFailed', (data) => addLog('adRenderFailed', data, 'error'));
+
+
+        const adUnit = {
+            code: 'ad-frame',
+            mediaTypes: { banner: { sizes: [[300, 200], [300, 600]] } },
+            bids: [
+                {
+                    bidder: 'adtelligent',
+                    params: { aid: 350975 }
+                }
+            ]
+        };
+
+
+        window.pbjs.que.push(() => {
+            addLog('queuePush', { message: 'Adding ad units to Prebid queue' });
+            window.pbjs.addAdUnits(adUnit);
+            window.pbjs.requestBids({
+                timeout: 1000,
+                bidsBackHandler: (bidResponse) => {
+                    addLog('bidsBackHandler', bidResponse);
+                    const bids = window.pbjs.getHighestCpmBids('ad-frame');
+                    if (bids.length > 0) {
+                        const iframe = document.getElementById('ad-frame');
+                        const doc = iframe.contentWindow.document;
+                        window.pbjs.renderAd(doc, bids[0].adId);
+                        addLog('renderAd', { adUnitCode: 'ad-frame', adId: bids[0].adId }, 'success');
+                    } else {
+                        addLog('noBids', { adUnitCode: 'ad-frame', message: 'No bids received' }, 'error');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<!-- почему у нас не срабатывало рендеринг рекламы на события BidWon -->
+<!-- потому-что bidWon это событие для трекинга а не для рендинга, в коде рендер внутри bidResponse , обрабатывает все ставки что визивает рендер рекламы несколько раз
+ bidWon может не срабатывать если Ad server если нет выиграшных ставок и не визовит рендер. Рендерить нужно ставить в bidsBackHandler с помощью getHighestCpmBids -->

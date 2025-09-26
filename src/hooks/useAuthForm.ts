@@ -27,11 +27,11 @@ export const useAuthForm = (formType: "register" | "login") => {
     try {
       if (isRegister) {
         const result = await registerUser(data as RegisterFormData);
-        console.log("[useAuthForm] Register success:", result);
+        // console.log("[useAuthForm] Register success:", result);
         navigate("/login");
       } else {
         const result = await loginUser(data as LoginFormData);
-        console.log("[useAuthForm] Login response:", result);
+        // console.log("[useAuthForm] Login response:", result);
         if (
           !result.token
           // || !result.user
@@ -42,7 +42,7 @@ export const useAuthForm = (formType: "register" | "login") => {
           );
         }
         login(result.token);
-        console.log("[useAuthForm] Login success:", result);
+        // console.log("[useAuthForm] Login success:", result);
         navigate("/");
       }
     } catch (error) {

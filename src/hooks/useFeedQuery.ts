@@ -11,8 +11,8 @@ export function useFeedQuery(url?: string, force?: number) {
     queryKey: ["feed", { queryUrl, force }],
     queryFn: () => fetchFeed(url, force),
   });
-  console.log(`[useFeedQuery] Starting fetch with url=${url}`);
-  console.log("[useFeedQuery] Data fetched successfully:", data);
+  // console.log(`[useFeedQuery] Starting fetch with url=${url}`);
+  // console.log("[useFeedQuery] Data fetched successfully:", data);
   return {
     data,
     isLoading,

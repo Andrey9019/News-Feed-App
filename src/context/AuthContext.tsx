@@ -28,9 +28,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   ) => {
     localStorage.setItem("token", newToken);
     setToken(newToken);
-    console.log(
-      `[AuthContext] Logged in with token: ${newToken.slice(0, 20)}...`
-    );
+    // console.log(
+    //   `[AuthContext] Logged in with token: ${newToken.slice(0, 20)}...`
+    // );
     // setUser(newUser);
     // console.log(`[AuthContext] Logged in: ${newUser.email}`);
   };
@@ -39,14 +39,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("token");
     setToken(null);
     // setUser(null);
-    console.log("[AuthContext] Logged out");
+    // console.log("[AuthContext] Logged out");
   };
 
-  console.log("[AuthContext] Providing context:", {
-    isAuthenticated,
-    // user,
-    token,
-  });
+  // console.log("[AuthContext] Providing context:", {
+  //   isAuthenticated,
+  //   // user,
+  //   token,
+  // });
 
   return (
     <AuthContext.Provider
@@ -65,7 +65,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  console.log("[useAuth] Accessing context:", context);
+  // console.log("[useAuth] Accessing context:", context);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
