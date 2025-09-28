@@ -8,8 +8,8 @@ export function useArticleQuery(url: string) {
     queryFn: () => fetchArticle(url),
     enabled: !!url,
   });
-  console.log(`[useArticleQuery] Starting fetch with url=${url}`);
-  console.log("[useArticleQuery] Data fetched successfully:", data);
+  // console.log(`[useArticleQuery] Starting fetch with url=${url}`);
+  // console.log("[useArticleQuery] Data fetched successfully:", data);
   return {
     data,
     isLoading,
